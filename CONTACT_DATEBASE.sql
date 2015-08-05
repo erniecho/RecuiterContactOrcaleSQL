@@ -40,11 +40,11 @@ PRIMARY KEY (Log_ID)
 
 CREATE TABLE Atest_Calls_Message
 (
-CM_ID VARCHAR(4000 byte) NOT NULL,
-Message VARCHAR(400 byte),
+CM_ID VARCHAR (4000 byte) NOT NULL,
+Message VARCHAR (400 byte),
 Date_Time_Rec DATE,
-CONSTRAINT CM_ID_pk PRIMARY KEY (CM_ID),
-CONSTRAINT fk_Comp_ID FOREIGN KEY Comp_ID) REFERENCES Atest_Company(Comp_ID),
-CONSTRAINT fk_Employee_ID FOREIGN KEY (Employee_ID) REFERENCES Atest_Employee (Employee_ID),
+CONSTRAINT pk_CM_ID PRIMARY KEY (CM_ID),
+CONSTRAINT fk_Comp_ID FOREIGN KEY (Comp_ID) REFERENCES Atest_Company (Comp_ID) ,
+CONSTRAINT fk_Employee_ID FOREIGN KEY (Employee_ID) REFERENCES Atest_Employee (Employee_ID) ,
 CONSTRAINT fk_Log_ID FOREIGN KEY (Log_ID) REFERENCES Atest_Log_SignIn (Log_ID)
 );
