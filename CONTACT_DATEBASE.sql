@@ -10,10 +10,9 @@ Drop Table Atest_Calls_Message;
 
 CREATE TABLE ATest_Company
 (
-Comp_ID VARCHAR(4000 byte) NOT NULL,
+Comp_ID VARCHAR(4000 byte) CONSTRAINT pk_Comp_ID PRIMARY KEY,
 Comp_Name VARCHAR(120 CHAR),
-Comp_WEBD VARCHAR(200 CHAR),
-CONSTRAINT Comp_ID_pk PRIMARY KEY (Comp_ID)
+Comp_WEBD VARCHAR(200 CHAR)
 );
 
 CREATE TABLE Atest_Employee
@@ -40,11 +39,27 @@ PRIMARY KEY (Log_ID)
 
 CREATE TABLE Atest_Calls_Message
 (
-CM_ID VARCHAR (4000 byte) NOT NULL,
+CM_ID VARCHAR (4000 byte) CONSTRAINT pk_CM_ID PRIMARY KEY,
 Message VARCHAR (400 byte),
 Date_Time_Rec DATE,
-CONSTRAINT pk_CM_ID PRIMARY KEY (CM_ID),
-CONSTRAINT fk_Comp_ID FOREIGN KEY (Comp_ID) REFERENCES Atest_Company (Comp_ID) ,
-CONSTRAINT fk_Employee_ID FOREIGN KEY (Employee_ID) REFERENCES Atest_Employee (Employee_ID) ,
-CONSTRAINT fk_Log_ID FOREIGN KEY (Log_ID) REFERENCES Atest_Log_SignIn (Log_ID)
+CONSTRAINT 'Comp_ID' FOREIGN KEY (Comp_ID) REFERENCES Atest_Company(Comp_ID) ,
+CONSTRAINT 'Employee_ID' FOREIGN KEY (Employee_ID) REFERENCES Atest_Employee (Employee_ID) ,
+CONSTRAINT 'Log_ID' FOREIGN KEY (Log_ID) REFERENCES Atest_Log_SignIn (Log_ID)
 );
+
+Drop Table Atest_Calls_Message;
+
+Create Table Atest_Calls_Message
+(
+CM_ID VARCHAR (4000 byte) CONSTRAINT pk_CM_ID PRIMARY KEY,
+Comp_ID VARCHAR (4000 byte),
+Employee_ID VARCHAR (4000 byte),
+Log_ID VARCHAR (4000 byte),
+Message VARCHAR (400 byte),
+Date_Time_Rec DATE
+);
+
+ALTER TABLE Atest_Calls_Message
+ADD CONSTRAINT CONSTRAINT fk_Comp_ID 
+FOREIGN KEY (Comp_ID) 
+REFERENCES Atest_Company(Comp_ID);
